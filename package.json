@@ -1,5 +1,8 @@
 {
   "name": "cache-logos",
   "scripts": {},
-  "license": ""
+  "engines": {
+      "node": ">=18.15",
+      "pnpm": ">=8.3"
+    }
 }
