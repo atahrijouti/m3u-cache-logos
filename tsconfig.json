@@ -4,7 +4,8 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["node_modules/@types", "types"]
+    "typeRoots": ["node_modules/@types", "types"],
+    "strict": true
   },
   "include": ["src"]
 }

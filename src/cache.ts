@@ -1,4 +1,7 @@
 import { promises as fs } from "fs"
 
+const program = async () => {
+  await fs.writeFile('output/test.txt', "it works")
+}
 
-console.log("hi")
+program().catch(console.error)
