@@ -33,10 +33,6 @@ const buildLogoDict = (playlist: M3uPlaylist) => {
   }, {})
 }
 
-const downloadLogo = async (url: string) => {
-  await run_command(`curl -O -J -L --output-dir output ${url}`)
-}
-
 const fileFromBase64 = async (encodedImage: string, name: string, ext: string) => {
   let base64Image = encodedImage.split(";base64,").pop() as string
   return await fs.writeFile(`output/${name}.${ext}`, base64Image, { encoding: "base64" })
@@ -52,7 +48,7 @@ const readFromSample = async () => {
   return sample
 }
 
-const program = async () => {
+const downloadImages = async () => {
   const playlist = await parseM3UPlaylist()
   const dict = buildLogoDict(playlist)
   // const dict = await readFromSample()
@@ -86,6 +82,23 @@ const program = async () => {
   }
 
   await fs.appendFile("output/dict.json", JSON.stringify(fileDict, null, 2))
+}
+
+const program = async () => {
+  const logoDict = JSON.parse(
+    await fs.readFile("input/dict.json", {
+      encoding: "utf-8",
+    })
+  )
+
+  const playlist = await parseM3UPlaylist()
+
+  playlist.medias.forEach((media) => {
+    const id = sanitizeFileName(media.attributes["tvg-name"] ?? "")
+    media.attributes["tvg-logo"] = logoDict[id]
+  })
+
+  await fs.writeFile(`output/superbits-local-logos.m3u`, playlist.getM3uString())
 }
 
 program().catch(console.error)
