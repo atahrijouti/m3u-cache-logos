@@ -1,7 +1,9 @@
 {
   "private": true,
   "name": "cache-logos",
-  "scripts": {},
+  "scripts": {
+    "start": "ts-node src/cache.ts"
+  },
   "engines": {
     "node": ">=18.15",
     "pnpm": ">=8.3"
