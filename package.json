@@ -3,7 +3,18 @@
   "name": "cache-logos",
   "scripts": {},
   "engines": {
-      "node": ">=18.15",
-      "pnpm": ">=8.3"
-    }
+    "node": ">=18.15",
+    "pnpm": ">=8.3"
+  },
+  "dependencies": {
+    "iptv-playlist-parser": "0.12.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^2.0.0",
+    "@types/node": "^18.15.13",
+    "prettier": "^2.8.7",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
+  }
 }
