@@ -108,5 +108,25 @@ export const applyLocalImages = async () => {
     media.attributes["tvg-logo"] = logoDict[channelName]
   })
 
-  await fs.writeFile(`output/superbits-local-logos.m3u`, playlist.getM3uString())
+  await fs.writeFile(`output/m3u-with-local-logos.m3u`, playlist.getM3uString())
+}
+
+export const sortPlaylist = async () => {
+  const playlist = await parseM3UPlaylist()
+  const collator = new Intl.Collator("en", { numeric: true, sensitivity: "base" })
+
+  playlist.medias.sort((a, b) =>
+    collator.compare(
+      `${a.attributes["group-title"] ?? ""} / ${a.name}`,
+      `${b.attributes["group-title"] ?? ""} / ${b.name}`,
+    ),
+  )
+
+  await fs.writeFile(`output/sorted-playlist.m3u`, playlist.getM3uString())
+}
+export const showmestuff = async () => {
+  const playlist = await parseM3UPlaylist()
+  const collator = new Intl.Collator("en", { numeric: true, sensitivity: "base" })
+
+  console.log(playlist.medias[0])
 }

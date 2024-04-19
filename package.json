@@ -2,14 +2,13 @@
   "private": true,
   "name": "cache-logos",
   "scripts": {
-    "start": "ts-node src/cache.ts"
+    "go": "ts-node src/program.ts"
   },
   "engines": {
     "node": ">=18.15",
     "pnpm": ">=8.3"
   },
   "dependencies": {
-    "iptv-playlist-parser": "0.12.2",
     "m3u-parser-generator": "^1.2.0"
   },
   "devDependencies": {
